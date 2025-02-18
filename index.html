@@ -1,0 +1,148 @@
+<!doctype html>
+<html>
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link href="./style.css" rel="stylesheet">
+  <title>Virtron Vaults</title>
+  <style>
+    /* Styling remains unchanged */
+    /* Media query to hide the vault image on smaller screens */
+    @media (max-width: 768px) {
+      .right-content {
+        display: none;
+      }
+      .left-content {
+        width: 100%;
+        padding: 20px;
+      }
+    }
+
+    .cookies-notice {
+      position: fixed;
+      bottom: 0;
+      left: 0;
+      width: 100%;
+      background-color: #1a1a1a;
+      color: #ffffff;
+      padding: 15px 20px;
+      border-top: 2px solid #4caf50;
+      font-size: 0.9rem;
+      z-index: 1000;
+      display: none; /* Hidden by default */
+      justify-content: space-between;
+      align-items: center;
+    }
+
+    .cookies-notice p {
+      margin: 0;
+      line-height: 1.5;
+      flex: 1;
+    }
+
+    .cookies-notice a {
+      color: #4caf50;
+      text-decoration: none;
+      font-weight: bold;
+    }
+
+    .cookies-notice a:hover {
+      text-decoration: underline;
+    }
+
+    .cookies-notice .accept-cookies {
+      background-color: #4caf50;
+      color: #ffffff;
+      border: none;
+      padding: 10px 20px;
+      border-radius: 5px;
+      font-size: 0.9rem;
+      font-weight: bold;
+      cursor: pointer;
+      transition: background-color 0.3s, color 0.3s;
+      margin-left: 20px;
+    }
+
+    .cookies-notice .accept-cookies:hover {
+      background-color: #3e8e41;
+    }
+
+    .cookies-notice .close-notice {
+      background: none;
+      color: #ffffff;
+      border: none;
+      font-size: 1.2rem;
+      font-weight: bold;
+      cursor: pointer;
+      transition: color 0.3s;
+      margin-left: 10px;
+    }
+
+    .cookies-notice .close-notice:hover {
+      color: #4caf50;
+    }
+  </style>
+</head>
+<body class="bg-black text-white h-screen relative">
+  <!-- Main Content -->
+  <div class="h-full w-full flex flex-wrap">
+    <div class="left-content w-1/2 flex flex-col justify-center items-start px-10 z-10">
+      <div class="flex items-center mb-4">
+        <img src="/logo.png" alt="Virtron Logo" class="h-24 w-24" />
+        <div>
+          <h1 class="text-4xl font-semibold">Virtron Labs</h1>
+        </div>
+      </div>
+      <h2 class="text-6xl font-bold mb-6 leading-tight">
+        Building the Foundations of the Metaverse
+      </h2>
+      <p class="text-lg text-gray-300 leading-relaxed mb-8">
+        From advanced virtual environments to seamless digital economies, Virtron Labs is dedicated to developing the core technologies that power the metaverse.
+      </p>
+      <a href="#">
+        <button class="bg-white text-black py-1.5 px-8 rounded-full font-semibold text-lg hover:bg-black hover:text-white hover:border hover:border-white transition-all">
+          Learn More
+        </button>
+      </a>
+    </div>
+    <div class="right-content w-1/2 h-full relative">
+      <img src="./Vault.webp" alt="Vault" class="h-full w-full object-cover" />
+      <div class="absolute inset-0 bg-black opacity-50"></div>
+    </div>
+  </div>
+
+  <!-- Cookies Notice -->
+  <div id="cookies-notice" class="cookies-notice">
+    <p>
+      We use cookies to improve user experience and analyze website traffic. By clicking "Accept Cookies," you consent to the storage of these technologies on your device. Read more in our <a href="privacy-policy.html">Cookie Policy</a>.
+    </p>
+    <div>
+      <button class="accept-cookies" onclick="acceptCookies()">Accept Cookies</button>
+      <button class="close-notice" onclick="closeNotice()">×</button>
+    </div>
+  </div>
+
+  <script>
+    // Check Local Storage for 'cookiesAccepted' flag
+    document.addEventListener("DOMContentLoaded", () => {
+      const cookiesNotice = document.getElementById("cookies-notice");
+      if (!localStorage.getItem("cookiesAccepted")) {
+        cookiesNotice.style.display = "flex"; // Show the notice
+      }
+    });
+
+    // Accept Cookies and Hide Notice
+    function acceptCookies() {
+      localStorage.setItem("cookiesAccepted", "true"); // Save acceptance to localStorage
+      document.cookie = "user_preference=accepted; path=/; max-age=" + 60 * 60 * 24 * 365; // Example cookie
+      document.getElementById("cookies-notice").remove(); // Remove the notice
+    }
+
+    // Close Notice without setting cookies
+    function closeNotice() {
+      localStorage.setItem("cookiesAccepted", "true"); // Save closure to localStorage
+      document.getElementById("cookies-notice").remove(); // Remove the notice
+    }
+  </script>
+</body>
+</html>
